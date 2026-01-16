@@ -18,3 +18,9 @@ venv\Scripts\activate
 pip install -r requirements.txt
 python main.py
 ```
+
+
+Video
+[https://youtu.be/G1Scj41coD4](https://youtu.be/G1Scj41coD4)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/G1Scj41coD4/0.jpg)](https://www.youtube.com/watch?v=G1Scj41coD4)
