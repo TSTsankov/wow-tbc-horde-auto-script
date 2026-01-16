@@ -191,7 +191,9 @@ def create_character():
             time.sleep(0.5)
             pyautogui.press("enter")
             time.sleep(0.5)
-            again_pt = locate_center_mss(AGREE, confidence=CONFIDENCE, monitor_index=WOW_MONITOR, grayscale=False)
+            again_pt = locate_center_mss(
+                AGREE, confidence=CONFIDENCE, monitor_index=WOW_MONITOR, grayscale=False
+            )
             if again_pt:
                 click_center(again_pt)
                 print("Clicked AGREE button.")
@@ -279,11 +281,12 @@ def automation_loop():
                 continue
 
         # 2) branch checks
-        body_pt = locate_center_mss(
+        body_pt = wait_for_mss(
             BODY_MALE,
-            confidence=CONFIDENCE - 0.15,
+            timeout=15,
+            confidence=CONFIDENCE,
             monitor_index=WOW_MONITOR,
-            grayscale=False,
+            grayscale=True,
         )
         if body_pt:
             click_center(body_pt)
@@ -296,23 +299,19 @@ def automation_loop():
             grayscale=False,
         ):
             create_character()
-        else:
-            time.sleep(0.15)
-
-        if locate_center_mss(
+            time.sleep(1)
+        elif locate_center_mss(
             ESC_OR_LOOP_IMAGES[0],
-            confidence=0.95,
+            confidence=0.94,
             monitor_index=WOW_MONITOR,
             grayscale=False,
         ):
             time.sleep(1)
             pyautogui.press("esc")
-            time.sleep(POLL)
+            time.sleep(0.02)
             pyautogui.press("esc")
             time.sleep(0.2)
-            print('\n\nHorde not available, pressed Esc and looping...\n\n')
-            continue
-
+            print("\n\nHorde not available, pressed Esc and looping...\n\n")
 
 # ------------------- entrypoint -------------------
 if __name__ == "__main__":
