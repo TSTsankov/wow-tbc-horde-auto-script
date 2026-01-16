@@ -10,7 +10,9 @@ import numpy as np
 import keyboard  # pip install keyboard
 
 MY_RACE = "tauren"  # options: orc, undead, tauren, troll, blood_elf
-MY_CLASS = "warrior"  # options: warrior, hunter, rogue, mage, priest, warlock, shaman, paladin
+MY_CLASS = (
+    "warrior"  # options: warrior, hunter, rogue, mage, priest, warlock, shaman, paladin
+)
 MY_NAME = "Moothecowman"  # desired character name
 
 # ------------------- settings -------------------
@@ -169,7 +171,7 @@ def create_character():
     print("HORDE AVAILABLE detected, proceeding with character creation...")
     race_pt = locate_center_mss(
         RACE_IMAGES[MY_RACE],
-        confidence=0.95,
+        confidence=CONFIDENCE,
         monitor_index=WOW_MONITOR,
         grayscale=False,
     )
@@ -190,13 +192,20 @@ def create_character():
             pyautogui.typewrite(MY_NAME)
             time.sleep(0.5)
             pyautogui.press("enter")
-            time.sleep(0.5)
-            again_pt = locate_center_mss(
-                AGREE, confidence=CONFIDENCE, monitor_index=WOW_MONITOR, grayscale=False
+            time.sleep(1)
+            agree_pt = locate_center_mss(
+                AGREE,
+                confidence=CONFIDENCE - 0.05,
+                monitor_index=WOW_MONITOR,
+                grayscale=True,
             )
-            if again_pt:
-                click_center(again_pt)
+            if agree_pt:
+                time.sleep(0.5)
+                click_center(agree_pt)
+                time.sleep(POLL)
+                click_center(agree_pt)
                 print("Clicked AGREE button.")
+                request_exit()
 
     time.sleep(0.5)
 
@@ -312,6 +321,7 @@ def automation_loop():
             pyautogui.press("esc")
             time.sleep(0.2)
             print("\n\nHorde not available, pressed Esc and looping...\n\n")
+
 
 # ------------------- entrypoint -------------------
 if __name__ == "__main__":
