@@ -290,17 +290,6 @@ def automation_loop():
             time.sleep(0.3)
 
         if locate_center_mss(
-            ESC_OR_LOOP_IMAGES[0],
-            confidence=CONFIDENCE,
-            monitor_index=WOW_MONITOR,
-            grayscale=False,
-        ):
-            time.sleep(1)
-            pyautogui.press("esc")
-            print('"Horde not available" detected, pressed Esc and looping...')
-            continue
-
-        if locate_center_mss(
             ESC_OR_LOOP_IMAGES[1],
             confidence=0.95,
             monitor_index=WOW_MONITOR,
@@ -309,6 +298,20 @@ def automation_loop():
             create_character()
         else:
             time.sleep(0.15)
+
+        if locate_center_mss(
+            ESC_OR_LOOP_IMAGES[0],
+            confidence=0.95,
+            monitor_index=WOW_MONITOR,
+            grayscale=False,
+        ):
+            time.sleep(1)
+            pyautogui.press("esc")
+            time.sleep(POLL)
+            pyautogui.press("esc")
+            time.sleep(0.2)
+            print('\n\nHorde not available, pressed Esc and looping...\n\n')
+            continue
 
 
 # ------------------- entrypoint -------------------
