@@ -9,9 +9,9 @@ import cv2
 import numpy as np
 import keyboard  # pip install keyboard
 
-MY_RACE = "tauren"
-MY_CLASS = "warrior"
-MY_NAME = "Azureon"
+MY_RACE = "tauren"  # options: orc, undead, tauren, troll, blood_elf
+MY_CLASS = "warrior"  # options: warrior, hunter, rogue, mage, priest, warlock, shaman, paladin
+MY_NAME = "Moothecowman"  # desired character name
 
 # ------------------- settings -------------------
 pyautogui.FAILSAFE = True  # move mouse to top-left corner to abort
